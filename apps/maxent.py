@@ -53,6 +53,7 @@ def _param_slider_bounds(dist_inst, param_name, is_int):
     return s_lo, s_hi, dv, step
 
 
+@st.cache_data(hash_funcs={type: lambda cls: cls.__qualname__})
 def _compute_maxent(dist_cls, fixed_params, lower, upper, mass, fixed_stat):
     dist_inst = dist_cls(**fixed_params) if fixed_params else dist_cls()
     if dist_inst.is_frozen:
